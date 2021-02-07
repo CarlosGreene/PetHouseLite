@@ -9,6 +9,10 @@ package modelo;
  *
  * @author Laplenovo
  */
-public class Mascota_resguardo {
+public class Mascota_resguardo extends Mascota{
     
+    public Mascota_resguardo(String nombre, int edad, double peso, String sexo){
+        super(nombre, edad, peso, sexo);
+    }
+   
 }

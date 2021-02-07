@@ -9,8 +9,12 @@ package modelo;
  *
  * @author Laplenovo
  */
-public class Mascota_cliente {
+public class Mascota_cliente extends Mascota{
     private Cliente cliente;
+    
+    public Mascota_cliente(String nombre, int edad, double peso, String sexo){
+        super(nombre, edad, peso, sexo);
+    }
 
     public Cliente getCliente() {
         return cliente;
