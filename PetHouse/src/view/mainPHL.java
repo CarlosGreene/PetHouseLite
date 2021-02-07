@@ -40,7 +40,6 @@ public class mainPHL extends javax.swing.JFrame {
         jMenu3 = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
-        jMenuItem7 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
 
         jMenuItem1.setText("jMenuItem1");
@@ -147,12 +146,6 @@ public class mainPHL extends javax.swing.JFrame {
         });
         jMenu3.add(jMenuItem6);
 
-        jMenuItem7.setFont(new java.awt.Font("Comic Sans MS", 1, 16)); // NOI18N
-        jMenuItem7.setText("Solicitud de Donación");
-        jMenuItem7.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jMenuItem7.setBorderPainted(true);
-        jMenu3.add(jMenuItem7);
-
         jMenuBar1.add(jMenu3);
 
         jMenu4.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
@@ -237,7 +230,6 @@ public class mainPHL extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
