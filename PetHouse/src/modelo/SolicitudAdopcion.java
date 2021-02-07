@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package modelo;
-
+import org.joda.time.DateTime;
 /**
  *
  * @author Laplenovo
@@ -14,7 +14,7 @@ public class SolicitudAdopcion {
     private Byte INE;
     private Mascota_resguardo mascota;
 
-    public SolicitudAdopcion(Cliente cliente, DateTime fechaHora,Byte ComprobanteDom, Byte INE){
+    public SolicitudAdopcion(Cliente cliente, DateTime fechaHora, Byte ComprobanteDom, Byte INE){
         super(cliente, fechaHora);
         this.ComprobanteDom = ComprobanteDom;
         this.INE = INE;
