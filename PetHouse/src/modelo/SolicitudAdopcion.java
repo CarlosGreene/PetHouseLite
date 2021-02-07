@@ -4,18 +4,18 @@
  * and open the template in the editor.
  */
 package modelo;
-import org.joda.time.DateTime;
+import java.sql.Date;
 /**
  *
  * @author Laplenovo
  */
-public class SolicitudAdopcion {
+public class SolicitudAdopcion extends Solicitud{
     private Byte ComprobanteDom;
     private Byte INE;
     private Mascota_resguardo mascota;
 
-    public SolicitudAdopcion(Cliente cliente, DateTime fechaHora, Byte ComprobanteDom, Byte INE){
-        super(cliente, fechaHora);
+    public SolicitudAdopcion(Cliente cliente, Date fecha, Byte ComprobanteDom, Byte INE){
+        super(cliente, fecha);
         this.ComprobanteDom = ComprobanteDom;
         this.INE = INE;
     }

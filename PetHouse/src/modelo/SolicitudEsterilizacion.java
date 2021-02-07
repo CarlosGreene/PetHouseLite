@@ -4,16 +4,16 @@
  * and open the template in the editor.
  */
 package modelo;
-
+import java.sql.Date;
 /**
  *
  * @author Laplenovo
  */
-public class SolicitudEsterilizacion {
+public class SolicitudEsterilizacion extends Solicitud{
     private Mascota_cliente mascota;
     
-    public SolicitudEsterilizacion(Cliente cliente, DateTime fechaHora,Mascota_cliente mascota){
-        super(cliente, fechaHora);
+    public SolicitudEsterilizacion(Cliente cliente, Date fecha, Mascota_cliente mascota){
+        super(cliente, fecha);
         this.mascota = mascota;
     }
     

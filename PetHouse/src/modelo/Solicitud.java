@@ -4,18 +4,18 @@
  * and open the template in the editor.
  */
 package modelo;
-import org.joda.time.DateTime;
+import java.sql.Date;
 /**
  *
  * @author Laplenovo
  */
 public class Solicitud {
     private Cliente cliente;
-    private DateTime fechaHora;
+    private Date fecha;
     
-    public Solicitud(Cliente cliente, DateTime fechaHora) {
+    public Solicitud(Cliente cliente, Date fecha) {
         this.cliente = cliente;
-        this.fechaHora = fechaHora;
+        this.fecha = fecha;
     }
 
     public Cliente getCliente() {
