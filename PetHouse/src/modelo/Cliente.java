@@ -15,9 +15,11 @@ public class Cliente {
     private String telefono;
     private int edad;
     
-    public void Cliente(String nombre,String telefono){
+    public void Cliente(String nombre, String email, String telefono, int edad){
         this.nombre = nombre;
+        this.email = email;
         this.telefono = telefono;
+        this.edad = edad;
     }
 
     public String getNombre() {
@@ -35,5 +37,21 @@ public class Cliente {
     public void setEmail(String email) {
         this.email = email;
     }
-    
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    public int getEdad() {
+        return edad;
+    }
+
+    public void setEdad(int edad) {
+        this.edad = edad;
+    }
+
 }

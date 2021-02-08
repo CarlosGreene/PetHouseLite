@@ -17,8 +17,10 @@ public class Mascota {
     private double peso;
     private String sexo;
     
-    public Mascota(String nombre, int edad, double peso, String sexo) {
+    public Mascota(String especie, String nombre, String raza, int edad, double peso, String sexo) {
+        this.raza = raza;
         this.nombre = nombre;
+        this.raza = raza;
         this.edad = edad;
         this.peso = peso;
         this.sexo = sexo;

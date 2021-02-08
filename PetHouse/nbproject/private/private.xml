@@ -3,14 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/green/OneDrive/Documentos/GitHub/PetHouseLite/PetHouse/src/view/SolicitudA.java</file>
-            <file>file:/C:/Users/green/OneDrive/Documentos/GitHub/PetHouseLite/PetHouse/src/view/mainPHL.java</file>
+            <file>file:/C:/Users/green/OneDrive/Documentos/GitHub/PetHouseLite/PetHouse/src/modelo/SolicitudEsterilizacion.java</file>
+            <file>file:/C:/Users/green/OneDrive/Documentos/GitHub/PetHouseLite/PetHouse/src/modelo/Solicitud.java</file>
             <file>file:/C:/Users/green/OneDrive/Documentos/GitHub/PetHouseLite/PetHouse/src/view/SolicitudE.java</file>
-            <file>file:/C:/Users/green/OneDrive/Documentos/GitHub/PetHouseLite/PetHouse/src/view/Inventario.java</file>
-            <file>file:/C:/Users/green/OneDrive/Documentos/GitHub/PetHouseLite/PetHouse/src/view/Cliente.java</file>
-            <file>file:/C:/Users/green/OneDrive/Documentos/GitHub/PetHouseLite/PetHouse/src/view/MascotaC.java</file>
-            <file>file:/C:/Users/green/OneDrive/Documentos/GitHub/PetHouseLite/PetHouse/src/view/MascotasA.java</file>
-            <file>file:/C:/Users/green/OneDrive/Documentos/GitHub/PetHouseLite/PetHouse/src/view/MascotasR.java</file>
+            <file>file:/C:/Users/green/OneDrive/Documentos/GitHub/PetHouseLite/PetHouse/src/modelo/SolicitudAdopcion.java</file>
         </group>
     </open-files>
 </project-private>

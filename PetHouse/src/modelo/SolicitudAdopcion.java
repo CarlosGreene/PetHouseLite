@@ -10,29 +10,30 @@ import java.sql.Date;
  * @author Laplenovo
  */
 public class SolicitudAdopcion extends Solicitud{
-    private Byte ComprobanteDom;
-    private Byte INE;
+    private byte[] ComprobanteDom;
+    private byte[] INE;
     private Mascota_resguardo mascota;
 
-    public SolicitudAdopcion(Cliente cliente, Date fecha, Byte ComprobanteDom, Byte INE){
+    public SolicitudAdopcion(Cliente cliente, Date fecha, byte[] ComprobanteDom, byte[] INE, Mascota_resguardo mascota){
         super(cliente, fecha);
         this.ComprobanteDom = ComprobanteDom;
         this.INE = INE;
+        this.mascota = mascota;
     }
     
-    public Byte getComprobanteDom() {
+    public byte[] getComprobanteDom() {
         return ComprobanteDom;
     }
 
-    public void setComprobanteDom(Byte ComprobanteDom) {
+    public void setComprobanteDom(byte[] ComprobanteDom) {
         this.ComprobanteDom = ComprobanteDom;
     }
 
-    public Byte getINE() {
+    public byte[] getINE() {
         return INE;
     }
 
-    public void setINE(Byte INE) {
+    public void setINE(byte[] INE) {
         this.INE = INE;
     }
 
