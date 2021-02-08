@@ -10,20 +10,20 @@ import java.sql.Date;
  * @author Laplenovo
  */
 public class SolicitudEsterilizacion extends Solicitud{
-    private Mascota_cliente mascota;
+    private String mascota;
     private double aporte;
     
-    public SolicitudEsterilizacion(Cliente cliente, Date fecha, Mascota_cliente mascota, double aporte){
+    public SolicitudEsterilizacion(String cliente, Date fecha, String mascota, double aporte){
         super(cliente, fecha);
         this.mascota = mascota;
         this.aporte = aporte;
     }
 
-    public Mascota_cliente getMascota() {
+    public String getMascota() {
         return mascota;
     }
 
-    public void setMascota(Mascota_cliente mascota) {
+    public void setMascota(String mascota) {
         this.mascota = mascota;
     }
 

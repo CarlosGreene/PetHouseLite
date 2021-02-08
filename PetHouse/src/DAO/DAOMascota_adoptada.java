@@ -25,7 +25,7 @@ public class DAOMascota_adoptada extends DAOGeneral<Mascota_adoptada>{
         int numFilas = 0;
         Connection con = getConeccion();
 
-        String orden = "INSERT INTO Mascota_adoptada (especie, nombre, raza, edad, peso, sexo, cliente, fechaCita)"+
+        String orden = "INSERT INTO mascota_adoptada (especie, nombre, raza, edad, peso, sexo, cliente, fechaCita)"+
                 "VALUES ('"+ e.getEspecie()+ "','" + e.getNombre()+ "','" + 
                 e.getRaza() + "',"+ e.getEdad()+"," + e.getPeso() + ",'" + 
                 e.getSexo() + "','" + e.getCliente() + "','" + 
@@ -42,7 +42,7 @@ public class DAOMascota_adoptada extends DAOGeneral<Mascota_adoptada>{
         int numFilas = 0;
         Connection con = getConeccion();
 
-        String orden = "DELETE FROM cliente WHERE "+condicion;
+        String orden = "DELETE FROM mascota_adoptada WHERE "+condicion;
 
         Statement sentencia = con.createStatement();
         numFilas = sentencia.executeUpdate(orden);
@@ -55,12 +55,12 @@ public class DAOMascota_adoptada extends DAOGeneral<Mascota_adoptada>{
         int numFilas = 0;
         Connection con = getConeccion();
 
-        String orden = "UPDATE cliente SET " +
+        String orden = "UPDATE mascota_adoptada SET " +
                 " especie='"+e.getEspecie()+"',"+
                 " nombre='" + e.getNombre() + "',"+
                 " raza='"+ e.getRaza()+ "',"+
                 " edad=" + e.getEdad() + ","+
-                " peso=" + e.getFechaCita() + ","+
+                " peso=" + e.getPeso() + ","+
                 " sexo='" + e.getSexo() + "',"+
                 " cliente='" + e.getCliente() + "',"+
                 " fechaCita='" + e.getFechaCita() + "'"+
@@ -77,7 +77,7 @@ public class DAOMascota_adoptada extends DAOGeneral<Mascota_adoptada>{
         ArrayList<Mascota_adoptada> lista = new ArrayList<Mascota_adoptada>();
         Mascota_adoptada e;
         Connection con = getConeccion();
-        String orden = "SELECT * FROM cliente " +
+        String orden = "SELECT * FROM mascota_adoptad " +
                 (condicion==null || condicion.length()==0 ? "":"WHERE " + condicion);
         Statement sentencia = con.createStatement();
         ResultSet rs = sentencia.executeQuery( orden );
