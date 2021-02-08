@@ -5,6 +5,9 @@
  */
 package view;
 
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
+
 /**
  *
  * @author Albert
@@ -32,15 +35,15 @@ public class mainPHL extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
+        Usuarios = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
+        MascotasR = new javax.swing.JMenuItem();
+        MascotasC = new javax.swing.JMenuItem();
+        MascotasA = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
-        jMenuItem5 = new javax.swing.JMenuItem();
-        jMenuItem6 = new javax.swing.JMenuItem();
-        jMenu4 = new javax.swing.JMenu();
+        SolicitudesA = new javax.swing.JMenuItem();
+        SolicitudesE = new javax.swing.JMenuItem();
+        Inventario = new javax.swing.JMenu();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -84,12 +87,12 @@ public class mainPHL extends javax.swing.JFrame {
         jMenuBar1.setMaximumSize(new java.awt.Dimension(535, 150000));
         jMenuBar1.setPreferredSize(new java.awt.Dimension(594, 70));
 
-        jMenu1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        jMenu1.setText("Usuarios Registrados");
-        jMenu1.setBorderPainted(true);
-        jMenu1.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
-        jMenu1.setMaximumSize(new java.awt.Dimension(250, 32767));
-        jMenuBar1.add(jMenu1);
+        Usuarios.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        Usuarios.setText("Usuarios Registrados");
+        Usuarios.setBorderPainted(true);
+        Usuarios.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
+        Usuarios.setMaximumSize(new java.awt.Dimension(250, 32767));
+        jMenuBar1.add(Usuarios);
 
         jMenu2.setBackground(new java.awt.Color(255, 255, 204));
         jMenu2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
@@ -98,28 +101,38 @@ public class mainPHL extends javax.swing.JFrame {
         jMenu2.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
         jMenu2.setMaximumSize(new java.awt.Dimension(250, 32767));
 
-        jMenuItem2.setFont(new java.awt.Font("Comic Sans MS", 1, 16)); // NOI18N
-        jMenuItem2.setText("Mascotas de Resguardadas");
-        jMenuItem2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jMenuItem2.setBorderPainted(true);
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        MascotasR.setFont(new java.awt.Font("Comic Sans MS", 1, 16)); // NOI18N
+        MascotasR.setText("Mascotas de Resguardadas");
+        MascotasR.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        MascotasR.setBorderPainted(true);
+        MascotasR.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                MascotasRActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem2);
+        jMenu2.add(MascotasR);
 
-        jMenuItem3.setFont(new java.awt.Font("Comic Sans MS", 1, 16)); // NOI18N
-        jMenuItem3.setText("Mascotas de Cliente");
-        jMenuItem3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jMenuItem3.setBorderPainted(true);
-        jMenu2.add(jMenuItem3);
+        MascotasC.setFont(new java.awt.Font("Comic Sans MS", 1, 16)); // NOI18N
+        MascotasC.setText("Mascotas de Cliente");
+        MascotasC.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        MascotasC.setBorderPainted(true);
+        MascotasC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MascotasCActionPerformed(evt);
+            }
+        });
+        jMenu2.add(MascotasC);
 
-        jMenuItem4.setFont(new java.awt.Font("Comic Sans MS", 1, 16)); // NOI18N
-        jMenuItem4.setText("Mascotas Adoptadas");
-        jMenuItem4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jMenuItem4.setBorderPainted(true);
-        jMenu2.add(jMenuItem4);
+        MascotasA.setFont(new java.awt.Font("Comic Sans MS", 1, 16)); // NOI18N
+        MascotasA.setText("Mascotas Adoptadas");
+        MascotasA.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        MascotasA.setBorderPainted(true);
+        MascotasA.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MascotasAActionPerformed(evt);
+            }
+        });
+        jMenu2.add(MascotasA);
 
         jMenuBar1.add(jMenu2);
 
@@ -129,32 +142,32 @@ public class mainPHL extends javax.swing.JFrame {
         jMenu3.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
         jMenu3.setMaximumSize(new java.awt.Dimension(150, 32767));
 
-        jMenuItem5.setFont(new java.awt.Font("Comic Sans MS", 1, 16)); // NOI18N
-        jMenuItem5.setText("Solicitudes de Adopción");
-        jMenuItem5.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jMenuItem5.setBorderPainted(true);
-        jMenu3.add(jMenuItem5);
+        SolicitudesA.setFont(new java.awt.Font("Comic Sans MS", 1, 16)); // NOI18N
+        SolicitudesA.setText("Solicitudes de Adopción");
+        SolicitudesA.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        SolicitudesA.setBorderPainted(true);
+        jMenu3.add(SolicitudesA);
 
-        jMenuItem6.setFont(new java.awt.Font("Comic Sans MS", 1, 16)); // NOI18N
-        jMenuItem6.setText("Solicitudes de Esterilización");
-        jMenuItem6.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jMenuItem6.setBorderPainted(true);
-        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+        SolicitudesE.setFont(new java.awt.Font("Comic Sans MS", 1, 16)); // NOI18N
+        SolicitudesE.setText("Solicitudes de Esterilización");
+        SolicitudesE.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        SolicitudesE.setBorderPainted(true);
+        SolicitudesE.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem6ActionPerformed(evt);
+                SolicitudesEActionPerformed(evt);
             }
         });
-        jMenu3.add(jMenuItem6);
+        jMenu3.add(SolicitudesE);
 
         jMenuBar1.add(jMenu3);
 
-        jMenu4.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        jMenu4.setText("Inventario");
-        jMenu4.setBorderPainted(true);
-        jMenu4.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
-        jMenu4.setMaximumSize(new java.awt.Dimension(150, 140000));
-        jMenu4.setPreferredSize(new java.awt.Dimension(101, 70));
-        jMenuBar1.add(jMenu4);
+        Inventario.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        Inventario.setText("Inventario");
+        Inventario.setBorderPainted(true);
+        Inventario.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
+        Inventario.setMaximumSize(new java.awt.Dimension(150, 140000));
+        Inventario.setPreferredSize(new java.awt.Dimension(101, 70));
+        jMenuBar1.add(Inventario);
 
         setJMenuBar(jMenuBar1);
 
@@ -172,13 +185,21 @@ public class mainPHL extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+    private void SolicitudesEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SolicitudesEActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem6ActionPerformed
+    }//GEN-LAST:event_SolicitudesEActionPerformed
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    private void MascotasRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MascotasRActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    }//GEN-LAST:event_MascotasRActionPerformed
+
+    private void MascotasCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MascotasCActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_MascotasCActionPerformed
+
+    private void MascotasAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MascotasAActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_MascotasAActionPerformed
 
     /**
      * @param args the command line arguments
@@ -216,20 +237,50 @@ public class mainPHL extends javax.swing.JFrame {
         });
     }
 
+    public JMenu getInventario() {
+        return Inventario;
+    }
+
+    public JMenuItem getMascotasA() {
+        return MascotasA;
+    }
+
+    public JMenuItem getMascotasC() {
+        return MascotasC;
+    }
+
+    public JMenuItem getMascotasR() {
+        return MascotasR;
+    }
+
+    public JMenuItem getSolicitudesA() {
+        return SolicitudesA;
+    }
+
+    public JMenuItem getSolicitudesE() {
+        return SolicitudesE;
+    }
+
+    public JMenu getUsuarios() {
+        return Usuarios;
+    }
+
+    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu Inventario;
+    private javax.swing.JMenuItem MascotasA;
+    private javax.swing.JMenuItem MascotasC;
+    private javax.swing.JMenuItem MascotasR;
+    private javax.swing.JMenuItem SolicitudesA;
+    private javax.swing.JMenuItem SolicitudesE;
+    private javax.swing.JMenu Usuarios;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
