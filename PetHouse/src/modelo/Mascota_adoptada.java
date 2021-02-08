@@ -4,23 +4,35 @@
  * and open the template in the editor.
  */
 package modelo;
-
+import java.sql.Date;
 /**
  *
  * @author Laplenovo
  */
 public class Mascota_adoptada extends Mascota{
-    private Cliente cliente;
+    private String cliente;
+    private Date fechaCita;
     
-    public Mascota_adoptada(String nombre, int edad, double peso, String sexo){
-        super(nombre, edad, peso, sexo);
+    public Mascota_adoptada(String especie, String nombre, String raza, int edad, double peso, String sexo, String cliente, Date fechaCita){
+        super(especie, nombre, raza, edad, peso, sexo);
+        this.cliente = cliente;
+        this.fechaCita = fechaCita;
     }
 
-    public Cliente getCliente() {
+    public String getCliente() {
         return cliente;
     }
 
-    public void setCliente(Cliente cliente) {
+    public void setCliente(String cliente) {
         this.cliente = cliente;
     }
+
+    public Date getFechaCita() {
+        return fechaCita;
+    }
+
+    public void setFechaCita(Date fechaCita) {
+        this.fechaCita = fechaCita;
+    }
+    
 }

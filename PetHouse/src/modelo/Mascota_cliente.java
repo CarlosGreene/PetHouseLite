@@ -12,8 +12,9 @@ package modelo;
 public class Mascota_cliente extends Mascota{
     private Cliente cliente;
     
-    public Mascota_cliente(String nombre, int edad, double peso, String sexo){
-        super(nombre, edad, peso, sexo);
+    public Mascota_cliente(String especie, String nombre, String raza, int edad, double peso, String sexo, Cliente cliente){
+        super(especie, nombre, raza, edad, peso, sexo);
+        this.cliente = cliente;
     }
 
     public Cliente getCliente() {

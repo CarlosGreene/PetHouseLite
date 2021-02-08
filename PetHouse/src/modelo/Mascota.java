@@ -11,14 +11,16 @@ package modelo;
  */
 public class Mascota {
     private String especie;
-    private String raza;
     private String nombre;
+    private String raza;
     private int edad;
     private double peso;
     private String sexo;
     
-    public Mascota(String nombre, int edad, double peso, String sexo) {
+    public Mascota(String especie, String nombre, String raza, int edad, double peso, String sexo) {
+        this.raza = raza;
         this.nombre = nombre;
+        this.raza = raza;
         this.edad = edad;
         this.peso = peso;
         this.sexo = sexo;
@@ -32,6 +34,14 @@ public class Mascota {
         this.especie = especie;
     }
 
+    public String getRaza() {
+        return raza;
+    }
+
+    public void setRaza(String raza) {
+        this.raza = raza;
+    }
+    
     public String getNombre() {
         return nombre;
     }

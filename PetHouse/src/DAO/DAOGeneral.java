@@ -17,7 +17,7 @@ import java.sql.Date;
  */
 public abstract class DAOGeneral<T> {
     private String host="localhost:3306";
-    private String bd="banco";
+    private String bd="pethouselite";
     private String login="root";
     private String password="perroaguadiacosa20";
     private boolean cargadoDriver;

@@ -11,8 +11,8 @@ package modelo;
  */
 public class Mascota_resguardo extends Mascota{
     
-    public Mascota_resguardo(String nombre, int edad, double peso, String sexo){
-        super(nombre, edad, peso, sexo);
+    public Mascota_resguardo(String especie, String nombre, String raza, int edad, double peso, String sexo){
+        super(especie, nombre, raza, edad, peso, sexo);
     }
    
 }
