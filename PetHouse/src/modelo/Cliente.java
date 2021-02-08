@@ -15,7 +15,7 @@ public class Cliente {
     private String telefono;
     private int edad;
     
-    public void Cliente(String nombre, String email, String telefono, int edad){
+    public Cliente(String nombre, String email, String telefono, int edad){
         this.nombre = nombre;
         this.email = email;
         this.telefono = telefono;

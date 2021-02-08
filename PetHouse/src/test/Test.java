@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package test;
-import modelo.Cliente;
+import view.mainPHL;
 /**
  *
  * @author green
@@ -16,7 +16,8 @@ public class Test {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        Cliente a = new Cliente("Juan","ggg@gmail.com","9999999999",20);
+        mainPHL i = new mainPHL();
+        i.setVisible(true);
     }
     
 }

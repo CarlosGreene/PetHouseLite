@@ -13,14 +13,10 @@ public class Insumo {
     private String producto;
     private String tipoDeInsumo;
     private double precio;
-    private Cliente donador;
+    private String donador;
     private Date fechaCita;
-    
-    public Insumo(String producto, String tipoDeInsumo ,double precio) {
-        this(producto, tipoDeInsumo, precio, null, null);
-    }
 
-    public Insumo(String producto, String tipoDeInsumo, double precio, Cliente donador, Date fechaCita){
+    public Insumo(String producto, String tipoDeInsumo, double precio, String donador, Date fechaCita){
         this.producto = producto;
         this.tipoDeInsumo = tipoDeInsumo;
         this.precio = precio;
@@ -52,11 +48,11 @@ public class Insumo {
         this.tipoDeInsumo = tipoDeInsumo;
     }
     
-    public Cliente getDonador() {
+    public String getDonador() {
         return donador;
     }
     
-    public void setDonador(Cliente donador) {
+    public void setDonador(String donador) {
         this.donador = donador;
     }
     

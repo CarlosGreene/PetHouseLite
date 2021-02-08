@@ -4,29 +4,28 @@
  * and open the template in the editor.
  */
 package DAO;
-
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import modelo.Cliente;
-
+import modelo.Insumo;
+import java.sql.Date;
 /**
  *
- * @author lbojor
+ * @author green
  */
-public class DAOCliente extends DAOGeneral<Cliente>{
-    public DAOCliente() {
+public class DAOInsumo extends DAOGeneral<Insumo>{
+    public DAOInsumo() {
     }
 
-    public int agregar(Cliente e) throws SQLException {
+    public int agregar(Insumo e) throws SQLException {
         int numFilas = 0;
         Connection con = getConeccion();
 
-        String orden = "INSERT INTO cliente (nombre, email, telefono, edad)"+
-                "VALUES ('"+ e.getNombre()+ "','" + e.getEmail()+ "','" + 
-                e.getTelefono() + "',"+ e.getEdad()+")";
+        String orden = "INSERT INTO insumo (producto, tipoDeInsumo, precio, donador, fechaCita)"+
+                "VALUES ('"+ e.getProducto()+ "','" + e.getTipoDeInsumo()+ "'," + 
+                e.getPrecio() + ",'"+ e.getDonador()+"','" + e.getFechaCita() +"')";
 
         Statement sentencia = con.createStatement();
         numFilas = sentencia.executeUpdate(orden);
@@ -48,15 +47,16 @@ public class DAOCliente extends DAOGeneral<Cliente>{
         return numFilas;
     }
 
-    public int modificar(Cliente e, String condicion)throws SQLException {
+    public int modificar(Insumo e, String condicion)throws SQLException {
         int numFilas = 0;
         Connection con = getConeccion();
 
         String orden = "UPDATE cliente SET " +
-                " nombre='"+e.getNombre()+"',"+
-                " email='" + e.getEmail() + "',"+
-                " telefono='"+ e.getTelefono()+ "',"+
-                " edad=" + e.getEdad() + 
+                " producto='"+e.getProducto()+"',"+
+                " tipoDeInsumo='" + e.getTipoDeInsumo() + "',"+
+                " precio="+ e.getPrecio()+ ","+
+                " donador='" + e.getDonador() + "',"+
+                " fechaCita='" + e.getFechaCita() + "'"+
                 " WHERE "+condicion;
 
         Statement sentencia = con.createStatement();
@@ -66,16 +66,16 @@ public class DAOCliente extends DAOGeneral<Cliente>{
         return numFilas;
     }
 
-    public ArrayList<Cliente> consultar(String condicion) throws SQLException{
-        ArrayList<Cliente> lista = new ArrayList<Cliente>();
-        Cliente e;
+    public ArrayList<Insumo> consultar(String condicion) throws SQLException{
+        ArrayList<Insumo> lista = new ArrayList<Insumo>();
+        Insumo e;
         Connection con = getConeccion();
         String orden = "SELECT * FROM cliente " +
                 (condicion==null || condicion.length()==0 ? "":"WHERE " + condicion);
         Statement sentencia = con.createStatement();
         ResultSet rs = sentencia.executeQuery( orden );
         while (rs.next()) {
-            e = new Cliente(rs.getString("nombre"), rs.getString("email"), rs.getString("telefono"), rs.getInt("edad"));
+            e = new Insumo(rs.getString("producto"), rs.getString("tipoDeInsumo"), rs.getDouble("precio"), rs.getString("donador"),rs.getDate("fechaCita"));
             lista.add( e );
         }
         sentencia.close();
