@@ -5,9 +5,14 @@
  */
 package view;
 
+import DAO.DAOCliente;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
+import Tabla.TablaSolicitudEsterilizacion;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 /**
  *
@@ -18,8 +23,46 @@ public class VistaSolicitudE extends javax.swing.JFrame {
     /**
      * Creates new form SolicitudE
      */
+    private TablaSolicitudEsterilizacion t = new TablaSolicitudEsterilizacion();
     public VistaSolicitudE() {
         initComponents();
+        t.visializar(jTable1);
+        
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        DAOCliente cn = new DAOCliente();
+        Connection con = cn.getConeccion();
+        
+        try{
+            String sql = "SELECT * FROM pethouselite.cliente";
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            Solicitante.addItem("Seleccionar solicitante");
+            
+            while(rs.next()){
+                Solicitante.addItem(rs.getString("nombre"));
+            }
+            rs.close();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        
+        DAOCliente mc = new DAOCliente();
+        con = mc.getConeccion();
+        
+         try{
+            String sql = "SELECT * FROM pethouselite.mascota_cliente";
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            Mascota.addItem("Seleccionar mascota");
+            
+            while(rs.next()){
+                Mascota.addItem(rs.getString("nombre"));
+            }
+            rs.close();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -35,9 +78,9 @@ public class VistaSolicitudE extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         Agregar = new javax.swing.JButton();
-        Mascota = new javax.swing.JComboBox<>();
+        Mascota = new javax.swing.JComboBox<String>();
         jLabel6 = new javax.swing.JLabel();
-        Solicitante = new javax.swing.JComboBox<>();
+        Solicitante = new javax.swing.JComboBox<String>();
         jLabel7 = new javax.swing.JLabel();
         Fecha = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
@@ -73,7 +116,6 @@ public class VistaSolicitudE extends javax.swing.JFrame {
         });
 
         Mascota.setFont(new java.awt.Font("Comic Sans MS", 0, 16)); // NOI18N
-        Mascota.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2" }));
         Mascota.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MascotaActionPerformed(evt);
@@ -84,7 +126,6 @@ public class VistaSolicitudE extends javax.swing.JFrame {
         jLabel6.setText("Mascota:");
 
         Solicitante.setFont(new java.awt.Font("Comic Sans MS", 0, 16)); // NOI18N
-        Solicitante.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2" }));
 
         jLabel7.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         jLabel7.setText("Fecha de la cita:");

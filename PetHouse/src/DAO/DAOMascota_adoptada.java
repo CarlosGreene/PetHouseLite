@@ -91,4 +91,21 @@ public class DAOMascota_adoptada extends DAOGeneral<Mascota_adoptada>{
         return lista;
     }
     
+    public ArrayList<Mascota_adoptada> enlistar() throws SQLException{
+        ArrayList<Mascota_adoptada> lista = new ArrayList<Mascota_adoptada>();
+        Mascota_adoptada e;
+        Connection con = getConeccion();
+        String orden = "SELECT * FROM mascota_adoptad ";
+        Statement sentencia = con.createStatement();
+        ResultSet rs = sentencia.executeQuery( orden );
+        while (rs.next()) {
+            e = new Mascota_adoptada(rs.getString("especie"), rs.getString("nombre"), rs.getString("raza"), 
+                    rs.getInt("edad"),rs.getDouble("peso"), rs.getString("sexo"), rs.getString("cliente"), rs.getDate("fechaCita"));
+            lista.add( e );
+        }
+        sentencia.close();
+        cerrarConeccion(con);
+        return lista;
+    }
+    
 }

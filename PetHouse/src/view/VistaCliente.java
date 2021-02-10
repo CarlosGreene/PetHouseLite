@@ -7,7 +7,7 @@ package view;
 
 import javax.swing.JButton;
 import javax.swing.JTextField;
-
+import Tabla.TablaCliente;
 /**
  *
  * @author Albert
@@ -17,8 +17,11 @@ public class VistaCliente extends javax.swing.JFrame {
     /**
      * Creates new form Usuario
      */
+    TablaCliente t = new TablaCliente();
+    
     public VistaCliente() {
         initComponents();
+        t.visializar(jTable1);
     }
 
     /**

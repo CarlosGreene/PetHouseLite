@@ -83,4 +83,21 @@ public class DAOInsumo extends DAOGeneral<Insumo>{
         cerrarConeccion(con);
         return lista;
     }    
+    
+    public ArrayList<Insumo> enlistar() throws SQLException{
+        ArrayList<Insumo> lista = new ArrayList<Insumo>();
+        Insumo e;
+        Connection con = getConeccion();
+        String orden = "SELECT * FROM insumo ";
+            
+        Statement sentencia = con.createStatement();
+        ResultSet rs = sentencia.executeQuery( orden );
+        while (rs.next()) {
+            e = new Insumo(rs.getString("producto"), rs.getString("tipoDeInsumo"), rs.getDouble("precio"), rs.getString("donador"),rs.getDate("fechaCita"));
+            lista.add( e );
+        }
+        sentencia.close();
+        cerrarConeccion(con);
+        return lista;
+    }   
 }

@@ -5,10 +5,10 @@ import modelo.Cliente;
 import modelo.Mascota_resguardo;
 import modelo.SolicitudAdopcion;
 import DAO.DAOSolicitudAdopcion;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import view.*;
+import Tabla.TablaSolicitudAdopcion;
 /**
  *
  * @author Albert
@@ -16,6 +16,8 @@ import view.*;
 public class controlSolicitudAdopcion implements ActionListener{
     private VistaSolicitudA vista;
     private SolicitudAdopcion solicitud;
+    private TablaSolicitudAdopcion t = new TablaSolicitudAdopcion();
+    private javax.swing.JTable jTable1;
     
     public controlSolicitudAdopcion(VistaSolicitudA vista){
         this.vista = vista;
@@ -23,85 +25,77 @@ public class controlSolicitudAdopcion implements ActionListener{
         this.vista.getEditar().addActionListener(this);
         this.vista.getEliminar().addActionListener(this);
         this.vista.getMenú().addActionListener(this);
-        this.vista.getComprobante().addActionListener(this);
-        this.vista.getINE().addActionListener(this);
     }
     
    public void actionPerformed(ActionEvent event){
         if(vista.getAgregar() == event.getSource()){
             String fechaC;
-            Cliente solicitante;
-            Mascota_resguardo mascota;
-            solicitante =(Cliente) vista.getSolicitante().getSelectedItem();
-            mascota =(Mascota_resguardo) vista.getMascota().getSelectedItem();
-            DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+            String solicitante;
+            String mascota;
+            solicitante =(String) vista.getSolicitante().getSelectedItem();
+            mascota =(String) vista.getMascota().getSelectedItem();
+            SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
             fechaC = vista.getFecha().getText();
+            Date fecha = null;
             try{
-                Date fecha = df.parse(fechaC);
-                solicitud.setFechaCita((java.sql.Date) fecha);
+                fecha = df.parse(fechaC);
+                java.sql.Date sqlFecha = new java.sql.Date(fecha.getTime());
+                solicitud = new SolicitudAdopcion(solicitante, sqlFecha, mascota);
             }catch(Exception e){
                 e.printStackTrace();
             }
-            solicitud.setCliente(solicitante);
-            solicitud.setMascota(mascota);
-            solicitud.setComprobanteDom(ComprobanteDom);
-            solicitud.setINE(INE);
             DAOSolicitudAdopcion solicitudBD = new DAOSolicitudAdopcion();
             try{
                 solicitudBD.agregar(solicitud);
             }catch (Exception e){
                 e.printStackTrace();
             }
+            t.visializar(jTable1);
         }
         if(vista.getEditar() == event.getSource()){
             String fechaC, condicion;
-            Cliente solicitante;
-            Mascota_resguardo mascota;
-            solicitante =(Cliente) vista.getSolicitante().getSelectedItem();
-            mascota =(Mascota_resguardo) vista.getMascota().getSelectedItem();
-            DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+            String solicitante;
+            String mascota;
+            solicitante =(String) vista.getSolicitante().getSelectedItem();
+            mascota =(String) vista.getMascota().getSelectedItem();
+            SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
             fechaC = vista.getFecha().getText();
+            Date fecha = null;
             try{
-                Date fecha = df.parse(fechaC);
-                solicitud.setFechaCita((java.sql.Date) fecha);
+                fecha = df.parse(fechaC);
+                java.sql.Date sqlFecha = new java.sql.Date(fecha.getTime());
+                solicitud = new SolicitudAdopcion(solicitante, sqlFecha, mascota);
             }catch(Exception e){
                 e.printStackTrace();
             }
-            solicitud.setCliente(solicitante);
-            solicitud.setMascota(mascota);
-            solicitud.setComprobanteDom(ComprobanteDom);
-            solicitud.setINE(INE);
-            condicion = " fechaCita = " + fechaC;
+            condicion = " fecha = '" + solicitud.getFecha() + "'";
             DAOSolicitudAdopcion solicitudBD = new DAOSolicitudAdopcion();
             try{
                 solicitudBD.modificar(solicitud, condicion);
             }catch (Exception e){
                 e.printStackTrace();
             }
+            t.visializar(jTable1);
         }
         if(vista.getEliminar() == event.getSource()){
             String fechaC, condicion;
-            DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+            SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
             fechaC = vista.getFecha().getText();
-            condicion = " fechaCita = " + fechaC;
+            Date fecha = null;
+            try{
+                fecha = df.parse(fechaC);
+            } catch(Exception e){
+                e.printStackTrace();
+            }
+            java.sql.Date sqlFecha = new java.sql.Date(fecha.getTime());
+            condicion = " fecha = '" + sqlFecha + "'";
             DAOSolicitudAdopcion solicitudBD = new DAOSolicitudAdopcion();
             try{
                 solicitudBD.eliminar(condicion);
             }catch (Exception e){
                 e.printStackTrace();
             }
-        }
-        if(vista.getComprobante()== event.getSource()){
-            mainPHL main = new mainPHL();
-            controlMenu cm = new controlMenu(main);
-            main.setVisible(true);
-            vista.dispose();
-        }
-        if(vista.getINE()== event.getSource()){
-            mainPHL main = new mainPHL();
-            controlMenu cm = new controlMenu(main);
-            main.setVisible(true);
-            vista.dispose();
+            t.visializar(jTable1);
         }
         if(vista.getMenú() == event.getSource()){
             mainPHL main = new mainPHL();

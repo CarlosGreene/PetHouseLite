@@ -7,6 +7,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import view.*;
+import Tabla.TablaInsumo;
 /**
  *
  * @author Albert
@@ -14,6 +15,8 @@ import view.*;
 public class controlInventario implements ActionListener{
     private VistaInventario vista;
     private Insumo insumo;
+    private javax.swing.JTable jTable1;
+    TablaInsumo t = new TablaInsumo();
     
     public controlInventario(VistaInventario vista){
         this.vista = vista;
@@ -37,9 +40,11 @@ public class controlInventario implements ActionListener{
             costo = Double.parseDouble(vista.getCosto().getText());
             DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
             fechaC = vista.getFecha().getText();
+            Date fecha = null;
             try{
-                Date fecha = df.parse(fechaC);
-                insumo.setFechaCita((java.sql.Date) fecha);
+                fecha = df.parse(fechaC);
+                java.sql.Date sqlFecha = new java.sql.Date(fecha.getTime());
+                insumo = new Insumo(producto, tipo, costo, donador, sqlFecha);
             }catch(Exception e){
                 e.printStackTrace();
             }
@@ -49,6 +54,7 @@ public class controlInventario implements ActionListener{
             }catch (Exception e){
                 e.printStackTrace();
             }
+            t.visializar(jTable1);
         }
         if(vista.getEditar() == event.getSource()){
             String producto, tipo, fechaC, donador, condicion;
@@ -63,30 +69,34 @@ public class controlInventario implements ActionListener{
             costo = Double.parseDouble(vista.getCosto().getText());
             DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
             fechaC = vista.getFecha().getText();
+            Date fecha = null;
             try{
-                Date fecha = df.parse(fechaC);
-                insumo.setFechaCita((java.sql.Date) fecha);
+                fecha = df.parse(fechaC);
+                java.sql.Date sqlFecha = new java.sql.Date(fecha.getTime());
+                insumo = new Insumo(producto, tipo, costo, donador, sqlFecha);
             }catch(Exception e){
                 e.printStackTrace();
             }
-            condicion = " producto = " + producto;
+            condicion = " producto = '" + producto + "'";
             DAOInsumo insumoBD = new DAOInsumo();
             try{
-                insumoBD.agregar(insumo);
+                insumoBD.modificar(insumo, condicion);
             }catch (Exception e){
                 e.printStackTrace();
             }
+            t.visializar(jTable1);
         }
         if(vista.getEliminar() == event.getSource()){
             String producto, condicion;
             producto = vista.getProducto().getText();
-            condicion = " producto = " + producto;
+            condicion = " producto = '" + producto + "'";
             DAOInsumo insumoBD = new DAOInsumo();
             try{
                 insumoBD.eliminar(condicion);
             }catch (Exception e){
                 e.printStackTrace();
             }
+            t.visializar(jTable1);
         }
         if(vista.getMenú() == event.getSource()){
             mainPHL main = new mainPHL();

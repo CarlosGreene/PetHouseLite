@@ -29,14 +29,6 @@ public class Solicitud {
     public Date getFecha(){
         return fecha;
     }
-    
-    public void setFechaCita(Date fecha){
-        this.fecha = fecha;
-    }
-
-    public Date getFecha() {
-        return fecha;
-    }
 
     public void setFecha(Date fecha) {
         this.fecha = fecha;

@@ -5,10 +5,14 @@
  */
 package view;
 
+import DAO.DAOCliente;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
-
+import Tabla.TablaMascotaAdoptada;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 /**
  *
  * @author Albert
@@ -18,8 +22,29 @@ public class VistaMascotasA extends javax.swing.JFrame {
     /**
      * Creates new form MascotasA
      */
+    TablaMascotaAdoptada t = new TablaMascotaAdoptada();
     public VistaMascotasA() {
         initComponents();
+        t.visializar(jTable1);
+        
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        DAOCliente cn = new DAOCliente();
+        Connection con = cn.getConeccion();
+        
+        try{
+            String sql = "SELECT * FROM pethouselite.cliente";
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            Dueño.addItem("Seleccionar dueño");
+            
+            while(rs.next()){
+                Dueño.addItem(rs.getString("nombre"));
+            }
+            rs.close();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -37,7 +62,7 @@ public class VistaMascotasA extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         Fecha = new javax.swing.JTextField();
         Agregar = new javax.swing.JButton();
-        Dueño = new javax.swing.JComboBox<>();
+        Dueño = new javax.swing.JComboBox<String>();
         Menú = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -64,7 +89,7 @@ public class VistaMascotasA extends javax.swing.JFrame {
         });
 
         Agregar.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
-        Agregar.setText("Agregar");
+        Agregar.setText("Editar");
         Agregar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         Agregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -73,7 +98,6 @@ public class VistaMascotasA extends javax.swing.JFrame {
         });
 
         Dueño.setFont(new java.awt.Font("Comic Sans MS", 0, 16)); // NOI18N
-        Dueño.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2" }));
         Dueño.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 DueñoActionPerformed(evt);
@@ -106,13 +130,10 @@ public class VistaMascotasA extends javax.swing.JFrame {
                         .addComponent(Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
             .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(136, 136, 136)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(136, 136, 136)
-                        .addComponent(Agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(136, 136, 136)
-                        .addComponent(Menú, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(Agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Menú, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -182,21 +203,21 @@ public class VistaMascotasA extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void FechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FechaActionPerformed
+    private void MenúActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenúActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_FechaActionPerformed
+    }//GEN-LAST:event_MenúActionPerformed
 
     private void AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_AgregarActionPerformed
 
+    private void FechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FechaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_FechaActionPerformed
+
     private void DueñoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DueñoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_DueñoActionPerformed
-
-    private void MenúActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenúActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_MenúActionPerformed
 
     /**
      * @param args the command line arguments

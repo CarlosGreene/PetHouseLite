@@ -7,6 +7,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import view.*;
+import Tabla.TablaMascotaAdoptada;
 /**
  *
  * @author Albert
@@ -14,6 +15,8 @@ import view.*;
 public class controlMascotas_adoptadas implements ActionListener{
     private VistaMascotasA vista;
     private Mascota_adoptada mascota;
+    TablaMascotaAdoptada t = new TablaMascotaAdoptada();
+    private javax.swing.JTable jTable1;
     
     public controlMascotas_adoptadas(VistaMascotasA vista){
         this.vista = vista;
@@ -40,6 +43,7 @@ public class controlMascotas_adoptadas implements ActionListener{
             }catch (Exception e){
                 e.printStackTrace();
             }
+            t.visializar(jTable1);
         }
         if(vista.getMenú() == event.getSource()){
             mainPHL main = new mainPHL();

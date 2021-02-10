@@ -8,7 +8,11 @@ package view;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
-
+import Tabla.TablaMascotaCliente;
+import DAO.DAOCliente;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 /**
  *
  * @author Albert
@@ -18,8 +22,29 @@ public class VistaMascotasC extends javax.swing.JFrame {
     /**
      * Creates new form MascotaC
      */
+    TablaMascotaCliente t = new TablaMascotaCliente();
     public VistaMascotasC() {
         initComponents();
+        t.visializar(jTable1);
+        
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        DAOCliente cn = new DAOCliente();
+        Connection con = cn.getConeccion();
+        
+        try{
+            String sql = "SELECT * FROM pethouselite.cliente";
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            Dueño.addItem("Seleccionar dueño");
+            
+            while(rs.next()){
+                Dueño.addItem(rs.getString("nombre"));
+            }
+            rs.close();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -41,14 +66,13 @@ public class VistaMascotasC extends javax.swing.JFrame {
         Raza = new javax.swing.JTextField();
         Edad = new javax.swing.JTextField();
         Agregar = new javax.swing.JButton();
-        Sexo = new javax.swing.JComboBox<>();
+        Sexo = new javax.swing.JComboBox<String>();
         jLabel5 = new javax.swing.JLabel();
         Peso = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        Especie = new javax.swing.JComboBox<>();
-        Foto = new javax.swing.JButton();
+        Especie = new javax.swing.JComboBox<String>();
         jLabel7 = new javax.swing.JLabel();
-        Dueño = new javax.swing.JComboBox<>();
+        Dueño = new javax.swing.JComboBox<String>();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
@@ -110,7 +134,7 @@ public class VistaMascotasC extends javax.swing.JFrame {
         });
 
         Sexo.setFont(new java.awt.Font("Comic Sans MS", 0, 16)); // NOI18N
-        Sexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Macho", "Hembra" }));
+        Sexo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Macho", "Hembra" }));
 
         jLabel5.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         jLabel5.setText("Peso (KG):");
@@ -121,17 +145,17 @@ public class VistaMascotasC extends javax.swing.JFrame {
         jLabel6.setText("Especie:");
 
         Especie.setFont(new java.awt.Font("Comic Sans MS", 0, 16)); // NOI18N
-        Especie.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Perro", "Gato" }));
-
-        Foto.setFont(new java.awt.Font("Comic Sans MS", 1, 16)); // NOI18N
-        Foto.setText("Foto");
-        Foto.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        Especie.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Perro", "Gato" }));
+        Especie.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EspecieActionPerformed(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         jLabel7.setText("Dueño:");
 
         Dueño.setFont(new java.awt.Font("Comic Sans MS", 0, 16)); // NOI18N
-        Dueño.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -163,15 +187,14 @@ public class VistaMascotasC extends javax.swing.JFrame {
                                         .addGap(18, 18, 18)
                                         .addComponent(jLabel5)
                                         .addGap(18, 18, 18)
-                                        .addComponent(Peso))
+                                        .addComponent(Peso, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE))
                                     .addComponent(Raza)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addComponent(Dueño, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                                                 .addComponent(Sexo, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
-                                                .addComponent(Foto, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                .addGap(0, 0, Short.MAX_VALUE)))
                                         .addGap(55, 55, 55))))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -206,10 +229,9 @@ public class VistaMascotasC extends javax.swing.JFrame {
                     .addComponent(Peso, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Sexo)
-                    .addComponent(Foto, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Sexo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
@@ -396,6 +418,10 @@ public class VistaMascotasC extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_MenúActionPerformed
 
+    private void EspecieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EspecieActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_EspecieActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -458,10 +484,6 @@ public class VistaMascotasC extends javax.swing.JFrame {
         return Especie;
     }
 
-    public JButton getFoto() {
-        return Foto;
-    }
-
     public JButton getMenú() {
         return Menú;
     }
@@ -493,7 +515,6 @@ public class VistaMascotasC extends javax.swing.JFrame {
     private javax.swing.JButton Editar;
     private javax.swing.JButton Eliminar;
     private javax.swing.JComboBox<String> Especie;
-    private javax.swing.JButton Foto;
     private javax.swing.JButton Menú;
     private javax.swing.JTextField Nombre;
     private javax.swing.JTextField Peso;

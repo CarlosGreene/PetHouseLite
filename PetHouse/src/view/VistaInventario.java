@@ -5,10 +5,15 @@
  */
 package view;
 
+import DAO.DAOCliente;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
+import Tabla.TablaInsumo;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 /**
  *
@@ -19,8 +24,29 @@ public class VistaInventario extends javax.swing.JFrame {
     /**
      * Creates new form Inventario
      */
+    TablaInsumo t = new TablaInsumo();
     public VistaInventario() {
         initComponents();
+        t.visializar(jTable1);
+        
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        DAOCliente cn = new DAOCliente();
+        Connection con = cn.getConeccion();
+        
+        try{
+            String sql = "SELECT * FROM pethouselite.cliente";
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            Donador.addItem("Ningun Donador");
+            
+            while(rs.next()){
+                Donador.addItem(rs.getString("nombre"));
+            }
+            rs.close();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -36,7 +62,7 @@ public class VistaInventario extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         Agregar = new javax.swing.JButton();
-        Tipo = new javax.swing.JComboBox<>();
+        Tipo = new javax.swing.JComboBox<String>();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         Producto = new javax.swing.JTextField();
@@ -45,7 +71,7 @@ public class VistaInventario extends javax.swing.JFrame {
         Costo = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        Donador = new javax.swing.JComboBox<>();
+        Donador = new javax.swing.JComboBox<String>();
         Anónimo = new javax.swing.JCheckBox();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -80,7 +106,7 @@ public class VistaInventario extends javax.swing.JFrame {
         });
 
         Tipo.setFont(new java.awt.Font("Comic Sans MS", 0, 16)); // NOI18N
-        Tipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Auto-Insumo", "Donativo" }));
+        Tipo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Auto-Insumo", "Donativo" }));
         Tipo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TipoActionPerformed(evt);
@@ -125,7 +151,6 @@ public class VistaInventario extends javax.swing.JFrame {
         jLabel3.setText("Donador:");
 
         Donador.setFont(new java.awt.Font("Comic Sans MS", 0, 16)); // NOI18N
-        Donador.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         Anónimo.setFont(new java.awt.Font("Comic Sans MS", 0, 16)); // NOI18N
         Anónimo.setText("Anónimo");
@@ -354,7 +379,7 @@ public class VistaInventario extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)))
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
                 .addContainerGap(31, Short.MAX_VALUE))
         );
 

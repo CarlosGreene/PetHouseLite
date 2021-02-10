@@ -9,6 +9,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import view.*;
+import Tabla.TablaSolicitudEsterilizacion;
 /**
  *
  * @author Albert
@@ -16,6 +17,8 @@ import view.*;
 public class controlSolicitudEsterilizacion implements ActionListener{
     private VistaSolicitudE vista;
     private SolicitudEsterilizacion solicitud;
+    private TablaSolicitudEsterilizacion t = new TablaSolicitudEsterilizacion();
+    private javax.swing.JTable jTable1;
     
     public controlSolicitudEsterilizacion(VistaSolicitudE vista){
         this.vista = vista;
@@ -29,67 +32,76 @@ public class controlSolicitudEsterilizacion implements ActionListener{
         if(vista.getAgregar() == event.getSource()){
             String fechaC;
             double servicio;
-            Cliente solicitante;
-            Mascota_cliente mascota;
-            solicitante =(Cliente) vista.getSolicitante().getSelectedItem();
-            mascota =(Mascota_cliente) vista.getMascota().getSelectedItem();
+            String solicitante;
+            String mascota;
+            solicitante =(String) vista.getSolicitante().getSelectedItem();
+            mascota =(String) vista.getMascota().getSelectedItem();
+            servicio = Double.parseDouble(vista.getServicio().getText());
             DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
             fechaC = vista.getFecha().getText();
+            Date fecha = null;
             try{
-                Date fecha = df.parse(fechaC);
-                solicitud.setFechaCita((java.sql.Date) fecha);
+                fecha = df.parse(fechaC);
+                java.sql.Date sqlFecha = new java.sql.Date(fecha.getTime());
+                solicitud = new SolicitudEsterilizacion(solicitante, sqlFecha, mascota, servicio);
             }catch(Exception e){
                 e.printStackTrace();
             }
-            servicio = Double.parseDouble(vista.getServicio().getText());
-            solicitud.setCliente(solicitante);
-            solicitud.setMascota(mascota);
-            solicitud.setAporte(servicio);
             DAOSolicitudEsterilizacion solicitudBD = new DAOSolicitudEsterilizacion();
             try{
                 solicitudBD.agregar(solicitud);
             }catch (Exception e){
                 e.printStackTrace();
             }
+            t.visializar(jTable1);
         }
         if(vista.getEditar() == event.getSource()){
             String fechaC, condicion;
             double servicio;
-            Cliente solicitante;
-            Mascota_cliente mascota;
-            solicitante =(Cliente) vista.getSolicitante().getSelectedItem();
-            mascota =(Mascota_cliente) vista.getMascota().getSelectedItem();
+            String solicitante;
+            String mascota;
+            solicitante =(String) vista.getSolicitante().getSelectedItem();
+            mascota =(String) vista.getMascota().getSelectedItem();
+            servicio = Double.parseDouble(vista.getServicio().getText());
             DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
             fechaC = vista.getFecha().getText();
+            Date fecha = null;
             try{
-                Date fecha = df.parse(fechaC);
-                solicitud.setFechaCita((java.sql.Date) fecha);
+                fecha = df.parse(fechaC);
+                java.sql.Date sqlFecha = new java.sql.Date(fecha.getTime());
+                solicitud = new SolicitudEsterilizacion(solicitante, sqlFecha, mascota, servicio);
             }catch(Exception e){
                 e.printStackTrace();
             }
-            servicio = Double.parseDouble(vista.getServicio().getText());
-            solicitud.setCliente(solicitante);
-            solicitud.setMascota(mascota);
-            solicitud.setAporte(servicio);
-            condicion = " fechaCita = " + fechaC;
+
+            condicion = " fecha = '" + solicitud.getFecha() + "'";
             DAOSolicitudEsterilizacion solicitudBD = new DAOSolicitudEsterilizacion();
             try{
                 solicitudBD.modificar(solicitud, condicion);
             }catch (Exception e){
                 e.printStackTrace();
             }
+            t.visializar(jTable1);
         }
         if(vista.getEliminar() == event.getSource()){
             String fechaC, condicion;
-            DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+            SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
             fechaC = vista.getFecha().getText();
-            condicion = " fechaCita = " + fechaC;
+            Date fecha = null;
+            try{
+                fecha = df.parse(fechaC);
+            } catch(Exception e){
+                e.printStackTrace();
+            }
+            java.sql.Date sqlFecha = new java.sql.Date(fecha.getTime());
+            condicion = " fecha = '" + sqlFecha + "'";
             DAOSolicitudEsterilizacion solicitudBD = new DAOSolicitudEsterilizacion();
             try{
                 solicitudBD.eliminar(condicion);
             }catch (Exception e){
                 e.printStackTrace();
             }
+            t.visializar(jTable1);
         }
         if(vista.getMenú() == event.getSource()){
             mainPHL main = new mainPHL();

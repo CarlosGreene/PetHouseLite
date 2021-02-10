@@ -23,9 +23,8 @@ public class DAOSolicitudAdopcion extends DAOGeneral<SolicitudAdopcion>{
         int numFilas = 0;
         Connection con = getConeccion();
 
-        String orden = "INSERT INTO solicitudadopcion (cliente, fecha, comprobanteDom, INE, mascota)"+
-                "VALUES ('"+ e.getCliente()+ "','" + e.getFecha()+ "','" + 
-                e.getComprobanteDom() + "','"+ e.getINE()+ "','" + e.getMascota() +"')";
+        String orden = "INSERT INTO solicitudadopcion (cliente, fecha, mascota)"+
+                "VALUES ('"+ e.getCliente()+ "','" + e.getFecha()+ "','" + e.getMascota() +"')";
 
         Statement sentencia = con.createStatement();
         numFilas = sentencia.executeUpdate(orden);
@@ -53,9 +52,7 @@ public class DAOSolicitudAdopcion extends DAOGeneral<SolicitudAdopcion>{
 
         String orden = "UPDATE solicitudadopcion SET " +
                 " cliente='"+e.getCliente()+"',"+
-                " fecha='" + e.getFecha() + "',"+
-                " comprobanteDom='"+ e.getComprobanteDom()+ "',"+
-                " INE='" + e.getINE() + "'," + 
+                " fecha='" + e.getFecha() + "',"+ 
                 " mascota='" + e.getMascota() + "'" + 
                 " WHERE "+condicion;
 
@@ -75,7 +72,23 @@ public class DAOSolicitudAdopcion extends DAOGeneral<SolicitudAdopcion>{
         Statement sentencia = con.createStatement();
         ResultSet rs = sentencia.executeQuery( orden );
         while (rs.next()) {
-            e = new SolicitudAdopcion(rs.getString("cliente"), rs.getDate("fecha"), rs.getBytes("comprobanteDom"), rs.getBytes("INE"), rs.getString("mascota"));
+            e = new SolicitudAdopcion(rs.getString("cliente"), rs.getDate("fecha"),rs.getString("mascota"));
+            lista.add( e );
+        }
+        sentencia.close();
+        cerrarConeccion(con);
+        return lista;
+    }
+    
+    public ArrayList<SolicitudAdopcion> enlistar() throws SQLException{
+        ArrayList<SolicitudAdopcion> lista = new ArrayList<SolicitudAdopcion>();
+        SolicitudAdopcion e;
+        Connection con = getConeccion();
+        String orden = "SELECT * FROM solicitudadopcion ";
+        Statement sentencia = con.createStatement();
+        ResultSet rs = sentencia.executeQuery( orden );
+        while (rs.next()) {
+            e = new SolicitudAdopcion(rs.getString("cliente"), rs.getDate("fecha"),rs.getString("mascota"));
             lista.add( e );
         }
         sentencia.close();

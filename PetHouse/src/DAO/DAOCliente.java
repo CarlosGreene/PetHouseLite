@@ -25,8 +25,7 @@ public class DAOCliente extends DAOGeneral<Cliente>{
         Connection con = getConeccion();
 
         String orden = "INSERT INTO cliente (nombre, email, telefono, edad)"+
-                "VALUES ('"+ e.getNombre()+ "','" + e.getEmail()+ "','" + 
-                e.getTelefono() + "',"+ e.getEdad()+")";
+                "VALUES ('"+ e.getNombre()+ "','" + e.getEmail()+ "','" + e.getTelefono() + "',"+ e.getEdad()+")";
 
         Statement sentencia = con.createStatement();
         numFilas = sentencia.executeUpdate(orden);
@@ -81,5 +80,22 @@ public class DAOCliente extends DAOGeneral<Cliente>{
         sentencia.close();
         cerrarConeccion(con);
         return lista;
-    }    
+    }  
+    
+    public ArrayList<Cliente> enlistar() throws SQLException{
+        ArrayList<Cliente> lista = new ArrayList<Cliente>();
+        Cliente e;
+        Connection con = getConeccion();
+        String orden = "SELECT * FROM cliente ";
+        Statement sentencia = con.createStatement();
+        ResultSet rs = sentencia.executeQuery( orden );
+        while (rs.next()) {
+            e = new Cliente(rs.getString("nombre"), rs.getString("email"), rs.getString("telefono"), rs.getInt("edad"));
+            lista.add( e );
+        }
+        sentencia.close();
+        cerrarConeccion(con);
+        return lista;
+    }   
+    
 }

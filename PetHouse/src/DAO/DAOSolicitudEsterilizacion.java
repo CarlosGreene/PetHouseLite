@@ -24,7 +24,7 @@ public class DAOSolicitudEsterilizacion extends DAOGeneral<SolicitudEsterilizaci
         int numFilas = 0;
         Connection con = getConeccion();
 
-        String orden = "INSERT INTO solicitudssterilizacion (cliente, fecha, mascota, aporte)"+
+        String orden = "INSERT INTO solicitudesterilizacion (cliente, fecha, mascota, aporte)"+
                 "VALUES ('"+ e.getCliente()+ "','" + e.getFecha()+ "','" + 
                 e.getMascota() + "'," + e.getAporte() + ")";
 
@@ -70,8 +70,24 @@ public class DAOSolicitudEsterilizacion extends DAOGeneral<SolicitudEsterilizaci
         ArrayList<SolicitudEsterilizacion> lista = new ArrayList<SolicitudEsterilizacion>();
         SolicitudEsterilizacion e;
         Connection con = getConeccion();
-        String orden = "SELECT * FROM solicitudadopcion " +
+        String orden = "SELECT * FROM solicitudesterilizacion " +
                 (condicion==null || condicion.length()==0 ? "":"WHERE " + condicion);
+        Statement sentencia = con.createStatement();
+        ResultSet rs = sentencia.executeQuery( orden );
+        while (rs.next()) {
+            e = new SolicitudEsterilizacion(rs.getString("cliente"), rs.getDate("fecha"), rs.getString("mascota"), rs.getDouble("aporte"));
+            lista.add( e );
+        }
+        sentencia.close();
+        cerrarConeccion(con);
+        return lista;
+    }
+    
+    public ArrayList<SolicitudEsterilizacion> enlistar() throws SQLException{
+        ArrayList<SolicitudEsterilizacion> lista = new ArrayList<SolicitudEsterilizacion>();
+        SolicitudEsterilizacion e;
+        Connection con = getConeccion();
+        String orden = "SELECT * FROM solicitudesterilizacion ";
         Statement sentencia = con.createStatement();
         ResultSet rs = sentencia.executeQuery( orden );
         while (rs.next()) {

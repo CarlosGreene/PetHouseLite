@@ -3,6 +3,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import modelo.Cliente;
 import DAO.DAOCliente;
+import Tabla.TablaCliente;
 import view.*;
 /**
  *
@@ -11,6 +12,8 @@ import view.*;
 public class controlCliente implements ActionListener{
     private VistaCliente vista;
     private Cliente cliente;
+    private javax.swing.JTable tabla;
+    private Tabla.TablaCliente t = new Tabla.TablaCliente();
     
     public controlCliente(VistaCliente vista){
         this.vista = vista;
@@ -28,13 +31,11 @@ public class controlCliente implements ActionListener{
             telefono = vista.getNúmero().getText();
             email = vista.getCorreo().getText();
             edad = Integer.parseInt(vista.getEdad().getText());
-            cliente.setNombre(nombre);
-            cliente.setEmail(email);
-            cliente.setTelefono(telefono);
-            cliente.setEdad(edad);
+            cliente = new Cliente(nombre, telefono, email, edad);
             DAOCliente clienteBD = new DAOCliente();
             try{
                 clienteBD.agregar(cliente);
+                t.visializar(tabla);
             }catch (Exception e){
                 e.printStackTrace();
             }
@@ -46,28 +47,27 @@ public class controlCliente implements ActionListener{
             telefono = vista.getNúmero().getText();
             email = vista.getCorreo().getText();
             edad = Integer.parseInt(vista.getEdad().getText());
-            cliente.setNombre(nombre);
-            cliente.setEmail(email);
-            cliente.setTelefono(telefono);
-            cliente.setEdad(edad);
-            condicion = " nombre = " + nombre;
+            cliente = new Cliente(nombre, telefono, email, edad);
+            condicion = " nombre = '" + nombre + "'";
             DAOCliente clienteBD = new DAOCliente();
             try{
                 clienteBD.modificar(cliente, condicion);
             }catch (Exception e){
                 e.printStackTrace();
             }
+            t.visializar(tabla);
         }
         if(vista.getEliminar() == event.getSource()){
             String nombre, condicion;
             nombre = vista.getNombre().getText();
-            condicion = " nombre = " + nombre;
+            condicion = " nombre = '" + nombre + "'";
             DAOCliente clienteBD = new DAOCliente();
             try{
                 clienteBD.eliminar(condicion);
             }catch (Exception e){
                 e.printStackTrace();
             }
+            t.visializar(tabla);
         }
         if(vista.getMenú() == event.getSource()){
             mainPHL main = new mainPHL();

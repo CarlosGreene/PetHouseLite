@@ -5,9 +5,15 @@
  */
 package view;
 
+import DAO.DAOCliente;
+import java.awt.TextField;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
+import Tabla.TablaSolicitudAdopcion;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 /**
  *
@@ -18,8 +24,47 @@ public class VistaSolicitudA extends javax.swing.JFrame {
     /**
      * Creates new form SolicitudA
      */
+    private TablaSolicitudAdopcion t = new TablaSolicitudAdopcion();
     public VistaSolicitudA() {
         initComponents();
+        t.visializar(jTable1);
+        
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        DAOCliente cn = new DAOCliente();
+        Connection con = cn.getConeccion();
+        
+        try{
+            String sql = "SELECT * FROM pethouselite.cliente";
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            Solicitante.addItem("Seleccionar solicitante");
+            
+            while(rs.next()){
+                Solicitante.addItem(rs.getString("nombre"));
+            }
+            rs.close();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        
+        DAOCliente mc = new DAOCliente();
+        con = mc.getConeccion();
+        
+         try{
+            String sql = "SELECT * FROM pethouselite.mascota_cliente";
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            Mascota.addItem("Seleccionar mascota");
+            
+            while(rs.next()){
+                Mascota.addItem(rs.getString("nombre"));
+            }
+            rs.close();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        
     }
 
     /**
@@ -35,13 +80,10 @@ public class VistaSolicitudA extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         Agregar = new javax.swing.JButton();
-        Mascota = new javax.swing.JComboBox<>();
+        Mascota = new javax.swing.JComboBox<String>();
         jLabel6 = new javax.swing.JLabel();
-        Solicitante = new javax.swing.JComboBox<>();
-        Comprobante = new javax.swing.JButton();
-        INE = new javax.swing.JButton();
+        Solicitante = new javax.swing.JComboBox<String>();
         jLabel7 = new javax.swing.JLabel();
         Fecha = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -68,9 +110,6 @@ public class VistaSolicitudA extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         jLabel2.setText("Copia de comprobante domiciliario:");
 
-        jLabel4.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
-        jLabel4.setText("Copia de INE:");
-
         Agregar.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
         Agregar.setText("Agregar");
         Agregar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -81,7 +120,6 @@ public class VistaSolicitudA extends javax.swing.JFrame {
         });
 
         Mascota.setFont(new java.awt.Font("Comic Sans MS", 0, 16)); // NOI18N
-        Mascota.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2" }));
         Mascota.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MascotaActionPerformed(evt);
@@ -92,15 +130,6 @@ public class VistaSolicitudA extends javax.swing.JFrame {
         jLabel6.setText("Mascota:");
 
         Solicitante.setFont(new java.awt.Font("Comic Sans MS", 0, 16)); // NOI18N
-        Solicitante.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2" }));
-
-        Comprobante.setFont(new java.awt.Font("Comic Sans MS", 1, 16)); // NOI18N
-        Comprobante.setText("Foto");
-        Comprobante.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
-        INE.setFont(new java.awt.Font("Comic Sans MS", 1, 16)); // NOI18N
-        INE.setText("Foto");
-        INE.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabel7.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         jLabel7.setText("Fecha de la cita:");
@@ -132,21 +161,13 @@ public class VistaSolicitudA extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(Fecha))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addGap(29, 29, 29)
-                                .addComponent(INE, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel2)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(143, 143, 143)
-                                .addComponent(Comprobante, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 130, Short.MAX_VALUE)))
+                        .addComponent(jLabel2)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(127, 127, 127)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(132, Short.MAX_VALUE)
                 .addComponent(Agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(130, 130, 130))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -168,17 +189,9 @@ public class VistaSolicitudA extends javax.swing.JFrame {
                         .addComponent(Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Comprobante, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(INE, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(39, 39, 39)))
-                .addGap(18, 18, 18)
+                .addGap(67, 67, 67)
                 .addComponent(Agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(84, Short.MAX_VALUE))
         );
 
         jTable1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -293,7 +306,7 @@ public class VistaSolicitudA extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -302,7 +315,7 @@ public class VistaSolicitudA extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 653, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 414, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(31, Short.MAX_VALUE))
@@ -396,10 +409,6 @@ public class VistaSolicitudA extends javax.swing.JFrame {
         return Agregar;
     }
 
-    public JButton getComprobante() {
-        return Comprobante;
-    }
-
     public JButton getEditar() {
         return Editar;
     }
@@ -412,10 +421,6 @@ public class VistaSolicitudA extends javax.swing.JFrame {
         return Fecha;
     }
 
-    public JButton getINE() {
-        return INE;
-    }
-
     public JComboBox<String> getMascota() {
         return Mascota;
     }
@@ -426,24 +431,19 @@ public class VistaSolicitudA extends javax.swing.JFrame {
 
     public JComboBox<String> getSolicitante() {
         return Solicitante;
-    }
-
-    
+    }   
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Agregar;
-    private javax.swing.JButton Comprobante;
     private javax.swing.JButton Editar;
     private javax.swing.JButton Eliminar;
     private javax.swing.JTextField Fecha;
-    private javax.swing.JButton INE;
     private javax.swing.JComboBox<String> Mascota;
     private javax.swing.JButton Menú;
     private javax.swing.JComboBox<String> Solicitante;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;

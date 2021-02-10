@@ -42,7 +42,7 @@ public class DAOMascota_cliente extends DAOGeneral<Mascota_cliente>{
         int numFilas = 0;
         Connection con = getConeccion();
 
-        String orden = "DELETE FROM mascota_clinete WHERE "+condicion;
+        String orden = "DELETE FROM mascota_cliente WHERE "+condicion;
 
         Statement sentencia = con.createStatement();
         numFilas = sentencia.executeUpdate(orden);
@@ -78,6 +78,23 @@ public class DAOMascota_cliente extends DAOGeneral<Mascota_cliente>{
         Connection con = getConeccion();
         String orden = "SELECT * FROM mascota_cliente " +
                 (condicion==null || condicion.length()==0 ? "":"WHERE " + condicion);
+        Statement sentencia = con.createStatement();
+        ResultSet rs = sentencia.executeQuery( orden );
+        while (rs.next()) {
+            e = new Mascota_cliente(rs.getString("especie"), rs.getString("nombre"), rs.getString("raza"), 
+                    rs.getInt("edad"),rs.getDouble("peso"), rs.getString("sexo"), rs.getString("cliente"));
+            lista.add( e );
+        }
+        sentencia.close();
+        cerrarConeccion(con);
+        return lista;
+    }
+    
+    public ArrayList<Mascota_cliente> enlistar() throws SQLException{
+        ArrayList<Mascota_cliente> lista = new ArrayList<Mascota_cliente>();
+        Mascota_cliente e;
+        Connection con = getConeccion();
+        String orden = "SELECT * FROM mascota_cliente ";
         Statement sentencia = con.createStatement();
         ResultSet rs = sentencia.executeQuery( orden );
         while (rs.next()) {
