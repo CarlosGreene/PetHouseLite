@@ -39,7 +39,7 @@ public class DAOInsumo extends DAOGeneral<Insumo>{
         int numFilas = 0;
         Connection con = getConeccion();
 
-        String orden = "DELETE FROM cliente WHERE "+condicion;
+        String orden = "DELETE FROM insumo WHERE "+condicion;
 
         Statement sentencia = con.createStatement();
         numFilas = sentencia.executeUpdate(orden);
@@ -52,7 +52,7 @@ public class DAOInsumo extends DAOGeneral<Insumo>{
         int numFilas = 0;
         Connection con = getConeccion();
 
-        String orden = "UPDATE cliente SET " +
+        String orden = "UPDATE insumo SET " +
                 " producto='"+e.getProducto()+"',"+
                 " tipoDeInsumo='" + e.getTipoDeInsumo() + "',"+
                 " precio="+ e.getPrecio()+ ","+
@@ -71,7 +71,7 @@ public class DAOInsumo extends DAOGeneral<Insumo>{
         ArrayList<Insumo> lista = new ArrayList<Insumo>();
         Insumo e;
         Connection con = getConeccion();
-        String orden = "SELECT * FROM cliente " +
+        String orden = "SELECT * FROM insumo " +
                 (condicion==null || condicion.length()==0 ? "":"WHERE " + condicion);
         Statement sentencia = con.createStatement();
         ResultSet rs = sentencia.executeQuery( orden );

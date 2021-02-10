@@ -10,19 +10,19 @@ import java.sql.Date;
  * @author Laplenovo
  */
 public class Solicitud {
-    private Cliente cliente;
+    private String cliente;
     private Date fecha;
     
-    public Solicitud(Cliente cliente, Date fecha) {
+    public Solicitud(String cliente, Date fecha) {
         this.cliente = cliente;
         this.fecha = fecha;
     }
 
-    public Cliente getCliente() {
+    public String getCliente() {
         return cliente;
     }
 
-    public void setCliente(Cliente cliente) {
+    public void setCliente(String cliente) {
         this.cliente = cliente;
     }
     
@@ -34,5 +34,11 @@ public class Solicitud {
         this.fecha = fecha;
     }
 
-    
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }   
 }

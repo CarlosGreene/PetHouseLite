@@ -12,9 +12,9 @@ import java.sql.Date;
 public class SolicitudAdopcion extends Solicitud{
     private byte[] ComprobanteDom;
     private byte[] INE;
-    private Mascota_resguardo mascota;
+    private String mascota;
 
-    public SolicitudAdopcion(Cliente cliente, Date fecha, byte[] ComprobanteDom, byte[] INE, Mascota_resguardo mascota){
+    public SolicitudAdopcion(String cliente, Date fecha, byte[] ComprobanteDom, byte[] INE, String mascota){
         super(cliente, fecha);
         this.ComprobanteDom = ComprobanteDom;
         this.INE = INE;
@@ -37,11 +37,11 @@ public class SolicitudAdopcion extends Solicitud{
         this.INE = INE;
     }
 
-    public Mascota_resguardo getMascota() {
+    public String getMascota() {
         return mascota;
     }
 
-    public void setMascota(Mascota_resguardo mascota) {
+    public void setMascota(String mascota) {
         this.mascota = mascota;
     }
     
