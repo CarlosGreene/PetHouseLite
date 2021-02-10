@@ -13,12 +13,12 @@ import javax.swing.JTextField;
  *
  * @author Albert
  */
-public class MascotasA extends javax.swing.JFrame {
+public class VistaMascotasA extends javax.swing.JFrame {
 
     /**
      * Creates new form MascotasA
      */
-    public MascotasA() {
+    public VistaMascotasA() {
         initComponents();
     }
 
@@ -38,6 +38,7 @@ public class MascotasA extends javax.swing.JFrame {
         Fecha = new javax.swing.JTextField();
         Agregar = new javax.swing.JButton();
         Dueño = new javax.swing.JComboBox<>();
+        Menú = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
@@ -79,6 +80,15 @@ public class MascotasA extends javax.swing.JFrame {
             }
         });
 
+        Menú.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
+        Menú.setText("Regresar al menú");
+        Menú.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        Menú.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenúActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -96,8 +106,13 @@ public class MascotasA extends javax.swing.JFrame {
                         .addComponent(Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(136, 136, 136)
-                .addComponent(Agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(136, 136, 136)
+                        .addComponent(Agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(136, 136, 136)
+                        .addComponent(Menú, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -113,6 +128,8 @@ public class MascotasA extends javax.swing.JFrame {
                     .addComponent(Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(45, 45, 45)
                 .addComponent(Agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(45, 45, 45)
+                .addComponent(Menú, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(46, Short.MAX_VALUE))
         );
 
@@ -177,6 +194,10 @@ public class MascotasA extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_DueñoActionPerformed
 
+    private void MenúActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenúActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_MenúActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -194,20 +215,21 @@ public class MascotasA extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MascotasA.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VistaMascotasA.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MascotasA.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VistaMascotasA.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MascotasA.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VistaMascotasA.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MascotasA.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VistaMascotasA.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MascotasA().setVisible(true);
+                new VistaMascotasA().setVisible(true);
             }
         });
     }
@@ -223,6 +245,12 @@ public class MascotasA extends javax.swing.JFrame {
     public JTextField getFecha() {
         return Fecha;
     }
+
+    public JButton getMenú() {
+        return Menú;
+    }
+    
+    
     
     
 
@@ -230,6 +258,7 @@ public class MascotasA extends javax.swing.JFrame {
     private javax.swing.JButton Agregar;
     private javax.swing.JComboBox<String> Dueño;
     private javax.swing.JTextField Fecha;
+    private javax.swing.JButton Menú;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

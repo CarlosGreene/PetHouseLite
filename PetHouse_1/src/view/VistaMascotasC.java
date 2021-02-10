@@ -13,12 +13,12 @@ import javax.swing.JTextField;
  *
  * @author Albert
  */
-public class MascotaC extends javax.swing.JFrame {
+public class VistaMascotasC extends javax.swing.JFrame {
 
     /**
      * Creates new form MascotaC
      */
-    public MascotaC() {
+    public VistaMascotasC() {
         initComponents();
     }
 
@@ -413,20 +413,23 @@ public class MascotaC extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MascotaC.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VistaMascotasC.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MascotaC.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VistaMascotasC.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MascotaC.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VistaMascotasC.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MascotaC.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VistaMascotasC.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MascotaC().setVisible(true);
+                new VistaMascotasC().setVisible(true);
             }
         });
     }
@@ -474,6 +477,12 @@ public class MascotaC extends javax.swing.JFrame {
     public JTextField getRaza() {
         return Raza;
     }
+
+    public JComboBox<String> getSexo() {
+        return Sexo;
+    }
+    
+    
     
     
 
