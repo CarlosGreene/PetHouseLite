@@ -10,17 +10,18 @@ package modelo;
  * @author Laplenovo
  */
 public class Mascota_cliente extends Mascota{
-    private Cliente cliente;
+    private String cliente;
     
-    public Mascota_cliente(String nombre, int edad, double peso, String sexo){
-        super(nombre, edad, peso, sexo);
+    public Mascota_cliente(String especie, String nombre, String raza, int edad, double peso, String sexo, String cliente){
+        super(especie, nombre, raza, edad, peso, sexo);
+        this.cliente = cliente;
     }
 
-    public Cliente getCliente() {
+    public String getCliente() {
         return cliente;
     }
 
-    public void setCliente(Cliente cliente) {
+    public void setCliente(String cliente) {
         this.cliente = cliente;
     }
     
