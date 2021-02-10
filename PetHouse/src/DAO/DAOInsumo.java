@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package DAO;
+import modelo.Cliente;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
